@@ -1,1 +1,113 @@
-<p>diabetes works!</p>
+<div class="w-full">
+  <div class="container">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form" class="mx-auto w-2/4 my-12">
+      <div class="flex justify-around my-4">
+        <!-- Pregnancies Field -->
+        <mat-form-field>
+          <mat-label>Pregnancies</mat-label>
+          <input matInput type="number" autocomplete="off" formControlName="preg">
+          <mat-error>
+            <span *ngIf="preg.hasError('required')">
+              This field is required
+            </span>
+            <span *ngIf="preg.hasError('min')">
+              Minimum value is 0
+            </span>
+            <span *ngIf="preg.hasError('max')">
+              Maximum value is 20
+            </span>
+          </mat-error>
+        </mat-form-field>
+        <!-- Glucose Field -->
+        <mat-form-field>
+          <mat-label>Glucose</mat-label>
+          <input matInput type="number" autocomplete="off" formControlName="gluc">
+          <mat-error>
+            <span *ngIf="gluc.hasError('required')">
+              This field is required
+            </span>
+            <span *ngIf="gluc.hasError('min')">
+              Minimum value is 30
+            </span>
+            <span *ngIf="gluc.hasError('max')">
+              Maximum value is 210
+            </span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="flex justify-around my-4">
+        <!-- Blood Pressure Field -->
+        <mat-form-field>
+          <mat-label>Blood Pressure</mat-label>
+          <input matInput type="number" autocomplete="off" formControlName="bloodpressure">
+          <mat-error>
+            <span *ngIf="bloodpressure.hasError('required')">
+              This field is required
+            </span>
+            <span *ngIf="bloodpressure.hasError('min')">
+              Minimum value is 10
+            </span>
+            <span *ngIf="bloodpressure.hasError('max')">
+              Maximum value is 140
+            </span>
+          </mat-error>
+        </mat-form-field>
+        <!-- BMI field -->
+        <mat-form-field>
+          <mat-label>BMI</mat-label>
+          <input matInput type="number" autocomplete="off" formControlName="bmi">
+          <mat-error>
+            <span *ngIf="bmi.hasError('required')">
+              This field is required
+            </span>
+            <span *ngIf="bmi.hasError('min')">
+              Minimum value is 15
+            </span>
+            <span *ngIf="bmi.hasError('max')">
+              Maximum value is 90
+            </span>
+          </mat-error>
+        </mat-form-field>
+
+      </div>
+      <div class="flex justify-around my-4">
+        <!-- Diabete Pedigree Function -->
+        <mat-form-field>
+          <mat-label>Diabete Pedigree Function</mat-label>
+          <input matInput type="number" autocomplete="off" formControlName="diabete_pedigree_function">
+          <mat-error>
+            <span *ngIf="diabete_pedigree_function.hasError('required')">
+              This field is required
+            </span>
+            <span *ngIf="diabete_pedigree_function.hasError('min')">
+              Minimum value is 0.001
+            </span>
+            <span *ngIf="diabete_pedigree_function.hasError('max')">
+              Maximum value is 4
+            </span>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Age -->
+        <mat-form-field>
+          <mat-label>Age</mat-label>
+          <input matInput type="number" autocomplete="off" formControlName="age">
+          <mat-error>
+            <span *ngIf="age.hasError('required')">
+              This field is required
+            </span>
+            <span *ngIf="age.hasError('min')">
+              Minimum value is 18
+            </span>
+            <span *ngIf="age.hasError('max')">
+              Maximum value is 90
+            </span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="flex justify-around my-4">
+        <button [disabled]="form.invalid" color="accent" mat-raised-button type="submit" class="">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
