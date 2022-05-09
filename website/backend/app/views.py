@@ -17,7 +17,7 @@ class PredictApiView(APIView):
         ]
         loaded_model = pickle.load(open("utils/voting.pickle", "rb"))
         res = {
-            "reslult": loaded_model.predict(predict)[0],
+            "result": loaded_model.predict(predict)[0],
             "knn_voted": loaded_model.transform(predict)[0][0],
             "nb_voted": loaded_model.transform(predict)[0][1],
             "dt_voted": loaded_model.transform(predict)[0][2],

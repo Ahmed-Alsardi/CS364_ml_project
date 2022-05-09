@@ -1,6 +1,9 @@
 <div class="w-full">
-  <div class="container">
-    <form (ngSubmit)="onSubmit()" [formGroup]="form" class="mx-auto w-2/4 my-12">
+  <div class="container bg-white shadow-lg py-5 w-2/4 mx-auto backdrop-filter rounded-xl">
+    <div>
+      <h1 class="text-3xl text-red-500 text-center">Data</h1>
+    </div>
+    <form (ngSubmit)="onSubmit()" [formGroup]="form" class="mx-auto my-12">
       <div class="flex justify-around my-4">
         <!-- Pregnancies Field -->
         <mat-form-field>
@@ -109,5 +112,34 @@
         <button [disabled]="form.invalid" color="accent" mat-raised-button type="submit" class="">Submit</button>
       </div>
     </form>
+  </div>
+  <div class="container my-5" *ngIf="result != null">
+    <h1 class="text-center text-red-400 text-2xl">Result</h1>
+    <div class="w-2/4 flex justify-around my-4 mx-auto justify-items-center">
+      <p>
+        <span class="text-xl text-gray-800">Naive Bayes:</span>
+        <span class="text-xl text-red-800">{{result.nb_voted}}</span>
+      </p>
+      <p>
+        <span class="text-xl text-gray-800">K-Nearest Neighbors:</span>
+        <span class="text-xl text-red-800">{{result.knn_voted}}</span>
+      </p>
+      <p>
+        <span class="text-xl text-gray-800">Decision Tree:</span>
+        <span class="text-xl text-red-800">{{result.dt_voted}}</span>
+      </p>
+      <p>
+        <span class="text-xl text-gray-800">Random Forest:</span>
+        <span class="text-xl text-red-800">{{result.rf_voted}}</span>
+      </p>
+      <p>
+        <span class="text-xl text-gray-800">Voting:</span>
+        <span class="text-xl text-red-800">{{result.result}}</span>
+      </p>
+    </div>
+    <div class="text-center text-lg">
+      <p>0: Not having Diabete</p>
+      <p>1: Having Diabete</p>
+    </div>
   </div>
 </div>
