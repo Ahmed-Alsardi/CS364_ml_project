@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {DiabetesService} from '../diabetes.service';
+import {DiabeteRequest, DiabeteResponse} from './interfaces';
 
 @Component({
   selector: 'app-diabetes',
@@ -9,7 +11,9 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 export class DiabetesComponent implements OnInit {
 
   form!: FormGroup;
-  constructor(private fb: FormBuilder) { }
+
+  constructor(private fb: FormBuilder, private diabeteService: DiabetesService) {
+  }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -47,6 +51,25 @@ export class DiabetesComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (this.form.invalid) {
+      console.log("invalid form");
+      return;
+    }
+    const data: DiabeteRequest = {
+      predict: {
+        pregnancies: this.preg.value,
+        glucose: this.gluc.value,
+        bloodpressure: this.bloodpressure.value,
+        bmi: this.bmi.value,
+        diabetespedigreefunction: this.diabete_pedigree_function.value,
+        age: this.age.value,
+      }
+    };
+    this.diabeteService.predict(data).subscribe(
+      (res: DiabeteResponse) => {
+        console.log(res);
+      }
+    )
     console.log("ready to submit");
   }
 }
